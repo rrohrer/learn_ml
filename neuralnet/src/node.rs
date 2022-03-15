@@ -1,5 +1,5 @@
 /// The main trait for a `Node` in the Network Graph.
-trait Node {
+pub trait Node {
     /// Nodes need to be set to an initial state, and need to be reset.
     fn init(&mut self);
 
