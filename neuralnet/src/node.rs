@@ -1,7 +1,9 @@
+use rand::rngs::SmallRng;
+
 /// The main trait for a `Node` in the Network Graph.
 pub trait Node {
     /// Nodes need to be set to an initial state, and need to be reset.
-    fn init(&mut self);
+    fn init(&mut self, rng: SmallRng);
 
     /// Durring forward propagation nodes transform input data and feed
     /// results to all subsequent nodes.
