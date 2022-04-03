@@ -34,4 +34,10 @@ pub trait Node {
     fn name(&self) -> String {
         String::from("Default Node Name")
     }
+
+    /// Add a node that precedes this node in the graph
+    fn add_antecent_node(&mut self, index: usize);
+
+    /// Add a node that comes after this node in the graph
+    fn add_subsequent_node(&mut self, index: usize);
 }

@@ -26,13 +26,23 @@ impl Model {
     }
 
     /// create an edge connecting two nodes
-    pub fn create_edge(&mut self, src: usize, dst: usize) {}
+    pub fn create_edge(&mut self, src: usize, dst: usize) {
+        self.nodes[src].add_subsequent_node(dst);
+        self.nodes[dst].add_antecent_node(src);
+    }
 
     /// initialize all of the nodes in the model, using the given seed
-    pub fn init(&mut self) {}
+    pub fn init(&mut self) {
+        for node in &mut self.nodes {
+            node.init(self.rng.clone());
+        }
+    }
 
     /// retuns the name of the model.
     pub fn name(&self) -> &String {
         &self.name
     }
+
+    /// Create a model using the given optimizer
+    pub fn train<Optimizer>(optimizer: Optimizer) {}
 }
