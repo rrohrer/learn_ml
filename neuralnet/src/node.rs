@@ -21,12 +21,12 @@ pub trait Node {
     }
 
     /// Get a parameter by the index.
-    fn parameter(&mut self, index: usize) -> Option<&mut f32> {
+    fn parameter(&mut self, _index: usize) -> Option<&mut f32> {
         None
     }
 
     /// Access the loss gradient with respect to the parameter index.
-    fn gradient(&mut self, index: usize) -> Option<&mut f32> {
+    fn gradient(&mut self, _index: usize) -> Option<&mut f32> {
         None
     }
 

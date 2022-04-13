@@ -1,3 +1,4 @@
+mod mnist_node;
 mod model;
 mod node;
 
