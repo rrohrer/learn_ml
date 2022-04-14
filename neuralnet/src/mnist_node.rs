@@ -3,7 +3,9 @@ use rand::rngs::SmallRng;
 use std::fs::File;
 use std::io::Read;
 
-const DIMENSIONS: usize = 28 * 28;
+const WIDTH: usize = 28;
+const HEIGHT: usize = 28;
+const DIMENSIONS: usize = WIDTH * HEIGHT;
 
 #[derive(Default)]
 pub struct MnistNode {
@@ -107,6 +109,29 @@ impl MnistNode {
 
         self.image_count = Some(image_count as usize);
         println!("Successfully loaded {} images from file.", image_count);
+    }
+    pub fn print_last_read(&self) {
+        if self.data.len() != DIMENSIONS {
+            return;
+        }
+        let number = self.label.iter().position(|&n| n == 1.0).unwrap();
+        println!("The number is: {}", number);
+
+        let mut line = String::new();
+        for y in 0..HEIGHT {
+            let offset = y * WIDTH;
+            for x in 0..WIDTH {
+                match self.data[offset + x] {
+                    n if n > 0.9 => line.push_str("#"),
+                    n if n > 0.7 => line.push_str("*"),
+                    n if n > 0.5 => line.push_str("."),
+                    _ => line.push_str(" "),
+                }
+            }
+
+            println!("{}", line);
+            line.clear();
+        }
     }
 }
 
