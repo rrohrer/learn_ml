@@ -50,14 +50,18 @@ impl MnistNode {
         }
     }
 
+    /// Get the most recent label that was read from the data-file.
     pub fn label(&self) -> [f32; 10] {
         self.label
     }
 
+    /// Get the most recent data image read from the data file.
     pub fn data(&self) -> &Vec<f32> {
         &self.data
     }
 
+    /// Read the next image and label from the loaded files.
+    /// This updates the output of `label()` and `data()`.
     pub fn read_next(&mut self) {
         let mut raw_buffer = [0; DIMENSIONS];
         // read the next image from the input file.
@@ -84,6 +88,7 @@ impl MnistNode {
         self.label = label;
     }
 
+    /// Read the file headers for the MNIST data. Get the number of images and validate its okay.
     fn read_mnist_header(&mut self) {
         let images = self.images_file.as_mut().unwrap();
         if read_be_u32(images).unwrap() != 2051 {
@@ -110,6 +115,8 @@ impl MnistNode {
         self.image_count = Some(image_count as usize);
         println!("Successfully loaded {} images from file.", image_count);
     }
+
+    /// Print the last image that was read from the input data, and its label.
     pub fn print_last_read(&self) {
         if self.data.len() != DIMENSIONS {
             return;

@@ -17,18 +17,4 @@ fn main() {
     mnist.init(SmallRng::seed_from_u64(0));
     mnist.read_next();
     mnist.print_last_read();
-    mnist.read_next();
-    mnist.print_last_read();
-    mnist.read_next();
-    mnist.print_last_read();
-    mnist.read_next();
-    mnist.print_last_read();
-    mnist.read_next();
-    mnist.print_last_read();
-    mnist.read_next();
-    mnist.print_last_read();
-    mnist.read_next();
-    mnist.print_last_read();
-    mnist.read_next();
-    mnist.print_last_read();
 }
